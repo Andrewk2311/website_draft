@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WayMaker | Brokerage for CPG Brands</title>
+  <meta name="description" content="The Waymaker opportunity: one partner, the right path into club and specialty retail. Customer-driven strategy, attention to detail, consistent delivery—the right solution and approach for your brand.">
+  <meta property="og:title" content="WayMaker | Brokerage for CPG Brands">
+  <meta property="og:description" content="Full-service brokerage for CPG brands in club and specialty retail. Strategy, retail readiness, execution.">
+  <meta property="og:image" content="WayMaker logo.png">
+  <meta property="og:url" content="https://waymakeragency.com/">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="WayMaker logo.png">
+  <link rel="apple-touch-icon" href="WayMaker logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Design system (logo colors) ===== */
+    :root {
+      --navy: #2C3E6C;
+      --navy-dark: #1e2b4a;
+      --gold: #9B845C;
+      --gold-hover: #856f4a;
+      --white: #FFFFFF;
+      --text-primary: #1f2d48;
+      --text-secondary: #5b6780;
+      --border: #e8ecf3;
+      --bg-soft: #f7f8fb;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'Fraunces', Georgia, serif;
+      --max-width: 1140px;
+      --header-height: 88px;
+      --transition: 0.25s ease;
+    }
+
+    /* ===== Reset & base ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--text-primary);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    /* ===== Layout ===== */
+    .container {
+      width: min(var(--max-width), calc(100% - 2.5rem));
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-divider {
+      position: relative;
+    }
+    .section-divider::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ===== Kicker / label ===== */
+    .kicker {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ===== Typography ===== */
+    h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: 1.15; color: var(--navy); }
+    h1 { font-size: clamp(2.25rem, 5vw, 4rem); letter-spacing: -0.03em; }
+    h2 { font-size: clamp(1.75rem, 4vw, 2.75rem); letter-spacing: -0.02em; margin-bottom: 1rem; }
+    h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    h4 { font-size: 1.2rem; margin-bottom: 0.35rem; }
+
+    /* ===== Header ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      width: min(var(--max-width), calc(100% - 2.5rem));
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+    }
+    .logo-link img {
+      height: 64px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+    }
+    .nav-links a {
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--navy); }
+
+    .nav-cta {
+      padding: 0.65rem 1.25rem;
+      border-radius: 12px;
+      font-weight: 700;
+      background: var(--navy);
+      color: var(--white);
+      transition: background var(--transition), transform var(--transition);
+    }
+    .nav-cta:hover { background: var(--navy-dark); transform: translateY(-1px); }
+
+    .mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0.5rem;
+      z-index: 1001;
+    }
+    .mobile-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--navy);
+      transition: transform var(--transition), opacity var(--transition);
+    }
+    .mobile-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition), visibility var(--transition);
+      z-index: 999;
+    }
+    .mobile-menu.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .mobile-menu a {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--navy);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ===== Buttons ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.875rem 1.5rem;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      border: 1px solid transparent;
+      transition: background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .btn-primary {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--navy-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(44, 62, 108, 0.25); }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--white);
+    }
+    .btn-gold:hover { background: var(--gold-hover); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(155, 132, 92, 0.35); }
+    .btn-secondary {
+      background: var(--white);
+      border-color: var(--border);
+      color: var(--navy);
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+    .btn-light {
+      background: var(--white);
+      color: var(--navy);
+    }
+    .btn-light:hover { background: var(--bg-soft); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+
+    /* ===== Hero ===== */
+    .hero {
+      position: relative;
+      padding-top: calc(var(--header-height) + 4rem);
+      padding-bottom: 4rem;
+      background: linear-gradient(180deg, rgba(155, 132, 92, 0.06) 0%, rgba(155, 132, 92, 0.03) 50%, var(--bg-soft) 100%);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: -10%;
+      width: 45%;
+      max-width: 400px;
+      aspect-ratio: 1;
+      background: radial-gradient(circle, rgba(155, 132, 92, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero h1 {
+      position: relative;
+    }
+    .hero h1::after {
+      content: '';
+      display: block;
+      width: 4rem;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin-top: 1rem;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      max-width: 100%;
+    }
+    .hero-content {
+      max-width: 36rem;
+    }
+    .hero-image {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 56px rgba(44, 62, 108, 0.12);
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+    .eyebrow {
+      display: inline-block;
+      background: rgba(155, 132, 92, 0.15);
+      color: var(--navy);
+      padding: 0.5rem 0.875rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .hero h1 { margin-bottom: 1rem; }
+    .lead {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 32rem;
+      margin-bottom: 1.5rem;
+    }
+    .actions { display: flex; gap: 0.875rem; flex-wrap: wrap; }
+    .hero-card {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 1.75rem;
+      box-shadow: 0 20px 50px rgba(44, 62, 108, 0.08);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+    .hero-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 56px rgba(44, 62, 108, 0.12);
+      border-color: rgba(155, 132, 92, 0.25);
+    }
+    .badges {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .badge {
+      border: 1px solid var(--border);
+      background: var(--bg-soft);
+      padding: 0.75rem;
+      border-radius: 14px;
+      text-align: center;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .mini { display: grid; gap: 0.875rem; }
+    .mini div {
+      padding: 1rem 1.125rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+    }
+    .mini strong {
+      display: block;
+      color: var(--navy);
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    /* ===== Stats strip ===== */
+    .strip {
+      padding: 1.75rem 0;
+      background: var(--navy);
+      color: var(--white);
+    }
+    .strip-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+    .strip-item {
+      font-size: 0.9375rem;
+      opacity: 0.95;
+    }
+    .strip-item strong {
+      display: block;
+      font-size: 1.75rem;
+      margin-bottom: 0.25rem;
+      opacity: 1;
+    }
+
+    /* ===== Section copy ===== */
+    .copy {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 42rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ===== Larger section text (What we do / Why WayMaker / Contact) ===== */
+    #services h2,
+    #credibility h2,
+    #contact .contact-intro h2 {
+      font-size: clamp(2.1rem, 4.8vw, 3.25rem);
+      margin-bottom: 1.25rem;
+    }
+    #services .copy {
+      font-size: 1.25rem;
+    }
+
+    /* ===== Cards ===== */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.75rem;
+      border-left: 3px solid transparent;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(44, 62, 108, 0.1);
+      border-left-color: var(--gold);
+      border-color: rgba(155, 132, 92, 0.2);
+    }
+    .card h3 { margin-bottom: 0.5rem; }
+    .card p { margin: 0; color: var(--text-secondary); font-size: 0.9375rem; }
+    .soft { background: var(--bg-soft); }
+
+    /* ===== Process ===== */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .step {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.5rem;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+    .step:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(44, 62, 108, 0.08);
+      border-color: rgba(155, 132, 92, 0.25);
+    }
+    .step .num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+    .step h4 { margin-bottom: 0.35rem; }
+    .step p { margin: 0; font-size: 0.875rem; color: var(--text-secondary); }
+
+    /* ===== Credibility ===== */
+    .credibility {
+      background: linear-gradient(180deg, rgba(155, 132, 92, 0.06) 0%, rgba(155, 132, 92, 0.03) 50%, var(--bg-soft) 100%);
+    }
+    .credibility-voice {
+      max-width: 36rem;
+      margin: 0 auto 2.5rem;
+      padding: 1.5rem 1.75rem;
+      background: var(--white);
+      border-radius: 16px;
+      border-left: 4px solid var(--gold);
+      box-shadow: 0 4px 20px rgba(44, 62, 108, 0.06);
+    }
+    .credibility-voice p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      line-height: 1.65;
+      font-style: italic;
+    }
+    .credibility-voice .attribution {
+      margin-top: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--gold);
+      font-weight: 600;
+      font-style: normal;
+    }
+    .credibility-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .credibility-item {
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .credibility-item strong {
+      display: block;
+      color: var(--navy);
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+    }
+    .credibility-item p {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+    }
+
+    #credibility .credibility-voice p {
+      font-size: 1.25rem;
+    }
+    #credibility .credibility-item strong {
+      font-size: 1.2rem;
+    }
+    #credibility .credibility-item p {
+      font-size: 1rem;
+    }
+
+    /* ===== CTA block ===== */
+    .cta-block {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+      color: var(--white);
+      border-radius: 28px;
+      padding: 2.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+    }
+    .cta-block h3 { color: var(--white); margin-bottom: 0.5rem; }
+    .cta-block p {
+      margin: 0;
+      max-width: 36rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1rem;
+    }
+
+    /* ===== Contact form ===== */
+    .contact-section { padding-bottom: 5rem; }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .contact-intro .kicker { margin-bottom: 0.5rem; }
+    .contact-intro h2 { margin-bottom: 0.75rem; }
+    .contact-intro p {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    #contact .contact-intro p {
+      font-size: 1.125rem;
+      line-height: 1.7;
+    }
+    .contact-intro a {
+      color: var(--gold);
+      font-weight: 600;
+      transition: color var(--transition);
+    }
+    .contact-intro a:hover { color: var(--gold-hover); }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.35rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      color: var(--text-primary);
+      transition: border-color var(--transition);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .form-submit {
+      margin-top: 0.5rem;
+    }
+    .form-success {
+      display: none;
+      padding: 1rem;
+      background: rgba(44, 62, 108, 0.08);
+      border-radius: 12px;
+      color: var(--navy);
+      font-weight: 500;
+    }
+    .form-success.visible { display: block; }
+
+    /* ===== Footer ===== */
+    .footer {
+      padding: 2rem 0 3rem;
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer a {
+      color: var(--navy);
+      transition: color var(--transition);
+    }
+    .footer a:hover { color: var(--gold); }
+
+    /* ===== Scroll reveal ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .cards,
+      .process-grid,
+      .strip-grid,
+      .credibility-grid { grid-template-columns: 1fr; }
+      .hero-image img { min-height: 240px; }
+      .nav-links { display: none; }
+      .mobile-toggle { display: flex; }
+      .cta-block { flex-direction: column; align-items: flex-start; }
+      .contact-inner { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 3.5rem 0; }
+      .container { width: calc(100% - 1.5rem); }
+      .hero { padding-top: calc(var(--header-height) + 2.5rem); }
+      .badges { grid-template-columns: 1fr; }
+      .logo-link img { height: 56px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="#" class="logo-link">
+        <img src="WayMaker logo.png" alt="WayMaker — Marketing Agency">
+      </a>
+      <nav class="nav-links">
+        <a href="#services">What We Do</a>
+        <a href="#credibility">Why WayMaker</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </nav>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile menu">
+    <a href="#services" data-close-menu>What We Do</a>
+    <a href="#credibility" data-close-menu>Why WayMaker</a>
+    <a href="#contact" data-close-menu>Contact</a>
+  </nav>
+
+  <section class="hero reveal visible">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <h1>Your Strategic Retail Advocate</h1>
+        <p class="lead">WayMaker is a sales & marketing agency with a specialized focus in assisting clients gain retail placement in Pharmacy OTC and Health & Beauty categories.</p>
+        <div class="actions">
+          <a class="btn btn-gold" href="#contact">Contact Us</a>
+          <a class="btn btn-secondary" href="#services">View Services</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="Windy Road.png" alt="Winding road leading toward the horizon—path forward">
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section-divider reveal">
+    <div class="container">
+      <span class="kicker">What we do</span>
+      <h2>Insight, Strategy, Execution, Support.</h2>
+      <p class="copy">We help you get retail-ready and execute through placement (continued)</p>
+      <div class="cards">
+        <div class="card">
+          <h3>Insight</h3>
+          <p>Market and channel insights so you know where to play and how to win in pharmacy OTC and health & beauty.</p>
+        </div>
+        <div class="card">
+          <h3>Strategy</h3>
+          <p>Clarify your positioning, story, pricing, and retailer fit before you get in front of buyers.</p>
+        </div>
+        <div class="card">
+          <h3>Execution</h3>
+          <p>Retail readiness and placement: packaging, item setup, margins, operations, and launch so the brand is prepared for sell-in.</p>
+        </div>
+        <div class="card">
+          <h3>Support</h3>
+          <p>Launches, promotions, and next steps after placement so momentum continues.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="credibility" class="credibility section-divider reveal">
+    <div class="container">
+      <span class="kicker">Why WayMaker</span>
+      <h2>One team, your strategy, delivered.</h2>
+      <div class="credibility-voice">
+        <p>We support customer-driven strategy and bring the best of Waymaker to you. In a complex, competitive space we win with attention to detail, consistent delivery, and transformational “big ideas”—partnering closely with your team every step of the way.</p>
+        <div class="attribution">— WayMaker</div>
+      </div>
+      <div class="credibility-grid">
+        <div class="credibility-item">
+          <strong>Customer-driven strategy</strong>
+          <p>We support your strategy and bring the best of Waymaker to you—one partner, one path.</p>
+        </div>
+        <div class="credibility-item">
+          <strong>Detail and consistency</strong>
+          <p>In a complex, competitive landscape, we win by focusing on the details and delivering consistently for the customer.</p>
+        </div>
+        <div class="credibility-item">
+          <strong>Big ideas, close partnership</strong>
+          <p>We drive transformational ideas and partner closely with your team so you can win.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section reveal">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="contact-intro">
+          <span class="kicker">Contact</span>
+          <h2>Start the conversation.</h2>
+          <p>Fill out the form and send us a message.</p>
+        </div>
+        <div class="form-wrap">
+          <!-- Replace action with your Formspree form ID: https://formspree.io/f/YOUR_FORM_ID -->
+          <form id="contact-form" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="you@company.com">
+            </div>
+            <div class="form-group">
+              <label for="company">Company / Brand</label>
+              <input type="text" id="company" name="company" placeholder="Your company or brand">
+            </div>
+            <div class="form-group">
+              <label for="message">What are you looking for?</label>
+              <textarea id="message" name="message" placeholder="Tell us about your brand and goals..."></textarea>
+            </div>
+            <div class="form-submit">
+              <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+            <div class="form-success" id="formSuccess" role="status">
+              Thanks for reaching out. We’ll be in touch soon.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <a href="#">WayMaker</a> Marketing Agency
+        <span style="margin: 0 0.5rem;">·</span>
+        <a href="mailto:hello@waymakeragency.com">Contact</a>
+      </div>
+      <div>&copy; <span id="year"></span> WayMaker Marketing Agency. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var mobileToggle = document.getElementById('mobileToggle');
+      var mobileMenu = document.getElementById('mobileMenu');
+      if (mobileToggle && mobileMenu) {
+        mobileToggle.addEventListener('click', function () {
+          mobileToggle.classList.toggle('active');
+          mobileMenu.classList.toggle('active');
+          document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+        document.querySelectorAll('[data-close-menu]').forEach(function (link) {
+          link.addEventListener('click', function () {
+            mobileToggle.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+          });
+        });
+      }
+
+      var yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      var form = document.getElementById('contact-form');
+      var formSuccess = document.getElementById('formSuccess');
+      if (form && formSuccess) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var formData = new FormData(form);
+          fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: { Accept: 'application/json' }
+          })
+            .then(function (res) {
+              if (res.ok) {
+                form.reset();
+                formSuccess.classList.add('visible');
+                formSuccess.setAttribute('aria-live', 'polite');
+              }
+            })
+            .catch(function () {
+              formSuccess.textContent = 'Something went wrong. Please email us at hello@waymakeragency.com.';
+              formSuccess.classList.add('visible');
+            });
+        });
+      }
+
+      var revealEls = document.querySelectorAll('.reveal');
+      if (typeof IntersectionObserver !== 'undefined' && revealEls.length) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
+        revealEls.forEach(function (el) {
+          if (!el.classList.contains('visible')) observer.observe(el);
+        });
+      } else {
+        revealEls.forEach(function (el) { el.classList.add('visible'); });
+      }
+    })();
+  </script>
+</body>
+</html>
