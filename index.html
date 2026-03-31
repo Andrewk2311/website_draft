@@ -750,12 +750,9 @@
           <p>Fill out the form and send us a message.</p>
         </div>
         <div class="form-wrap">
-          <!-- Submits to contact.php on the same host (GoDaddy PHP). -->
-          <form id="contact-form" class="contact-form" action="contact.php" method="POST">
-            <div class="form-group" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
-              <label for="website">Leave blank</label>
-              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-            </div>
+          <!-- Formspree: AJAX submit (fetch). https://help.formspree.io/hc/en-us/articles/360013470814 -->
+          <form id="contact-form" class="contact-form" action="https://formspree.io/f/xqegbkwl" method="POST">
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;height:0;width:0;opacity:0;pointer-events:none">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" required placeholder="Your name">
@@ -839,21 +836,30 @@
               });
             })
             .then(function (result) {
-              if (result.res.ok && result.data && result.data.ok) {
+              if (result.res.ok) {
                 form.reset();
                 formSuccess.textContent = successText;
                 formSuccess.classList.remove('is-error');
                 formSuccess.classList.add('visible');
                 formSuccess.setAttribute('aria-live', 'polite');
-              } else {
-                var msg = (result.data && result.data.error)
-                  ? result.data.error
-                  : 'Something went wrong. Please email andrewk422@gmail.com.';
-                formSuccess.textContent = msg;
-                formSuccess.classList.add('is-error');
-                formSuccess.classList.add('visible');
-                formSuccess.setAttribute('aria-live', 'polite');
+                return;
               }
+              var msg = 'Something went wrong. Please email andrewk422@gmail.com.';
+              var d = result.data;
+              if (d) {
+                if (typeof d.error === 'string') msg = d.error;
+                else if (Array.isArray(d.errors) && d.errors.length) {
+                  msg = d.errors.map(function (err) {
+                    return err.message || (err.field ? err.field + ' is invalid' : '');
+                  }).filter(Boolean).join(' ');
+                } else if (d.errors && typeof d.errors === 'object') {
+                  msg = Object.keys(d.errors).map(function (k) { return d.errors[k]; }).join(' ');
+                }
+              }
+              formSuccess.textContent = msg;
+              formSuccess.classList.add('is-error');
+              formSuccess.classList.add('visible');
+              formSuccess.setAttribute('aria-live', 'polite');
             })
             .catch(function () {
               formSuccess.textContent = 'Something went wrong. Please email andrewk422@gmail.com.';
