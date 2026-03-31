@@ -589,6 +589,11 @@
       font-weight: 500;
     }
     .form-success.visible { display: block; }
+    .form-success.is-error {
+      background: rgba(180, 60, 60, 0.1);
+      color: var(--navy);
+      border: 1px solid rgba(180, 60, 60, 0.35);
+    }
 
     /* ===== Footer ===== */
     .footer {
@@ -745,8 +750,12 @@
           <p>Fill out the form and send us a message.</p>
         </div>
         <div class="form-wrap">
-          <!-- Replace action with your Formspree form ID: https://formspree.io/f/YOUR_FORM_ID -->
-          <form id="contact-form" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <!-- Submits to contact.php on the same host (GoDaddy PHP). -->
+          <form id="contact-form" class="contact-form" action="contact.php" method="POST">
+            <div class="form-group" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+              <label for="website">Leave blank</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" required placeholder="Your name">
@@ -811,8 +820,11 @@
       var form = document.getElementById('contact-form');
       var formSuccess = document.getElementById('formSuccess');
       if (form && formSuccess) {
+        var successText = 'Thanks for reaching out. We’ll be in touch soon.';
         form.addEventListener('submit', function (e) {
           e.preventDefault();
+          formSuccess.classList.remove('is-error');
+          formSuccess.textContent = successText;
           var formData = new FormData(form);
           fetch(form.action, {
             method: 'POST',
@@ -820,14 +832,32 @@
             headers: { Accept: 'application/json' }
           })
             .then(function (res) {
-              if (res.ok) {
+              return res.json().then(function (data) {
+                return { res: res, data: data };
+              }).catch(function () {
+                return { res: res, data: null };
+              });
+            })
+            .then(function (result) {
+              if (result.res.ok && result.data && result.data.ok) {
                 form.reset();
+                formSuccess.textContent = successText;
+                formSuccess.classList.remove('is-error');
+                formSuccess.classList.add('visible');
+                formSuccess.setAttribute('aria-live', 'polite');
+              } else {
+                var msg = (result.data && result.data.error)
+                  ? result.data.error
+                  : 'Something went wrong. Please email andrewk422@gmail.com.';
+                formSuccess.textContent = msg;
+                formSuccess.classList.add('is-error');
                 formSuccess.classList.add('visible');
                 formSuccess.setAttribute('aria-live', 'polite');
               }
             })
             .catch(function () {
-              formSuccess.textContent = 'Something went wrong. Please email us at hello@waymakeragency.com.';
+              formSuccess.textContent = 'Something went wrong. Please email andrewk422@gmail.com.';
+              formSuccess.classList.add('is-error');
               formSuccess.classList.add('visible');
             });
         });
